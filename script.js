@@ -1,5 +1,5 @@
 
-const $=id=>document.getElementById(id),HD='Nurmat_mn';
+const $=id=>document.getElementById(id),HD='Nurmat_mn',ADMIN_PIN='989099';
 let PH='996509202620';
 const TEXT={
 'Информационный зал':['Маалымат залы','Информационный зал','Information hall'],
@@ -194,9 +194,8 @@ const TEXT={
 'Люди, которые запишут, сведут и подготовят ваш трек.':['Ырыңызды жаздырып, иштетип жана даярдап берген адистер.','Команда, которая запишет, сведёт и подготовит ваш трек.','The team recording, mixing and preparing your track.'],
 'Админ-зал':['Администратор бөлмөсү','Админ-зал','Admin room'],
 'Только для администратора. Здесь можно изменить данные команды и фото.':['Администратор үчүн. Бул жерден команда тууралуу маалыматты жана сүрөттү өзгөртө аласыз.','Только для администратора. Здесь можно изменить данные команды и фотографии.','For administrators only. Edit team details and photos here.'],
-'Проверка доступа администратора':['Администратордун жеткиликтүүлүгүн текшерүү','Проверка доступа администратора','Administrator access check'],
-'Для входа нужен авторизованный аккаунт администратора.':['Кирүү үчүн администратордун уруксат берилген аккаунту керек.','Для входа нужен авторизованный аккаунт администратора.','An authorized administrator account is required to sign in.'],
-'Проверить доступ':['Жеткиликтүүлүктү текшерүү','Проверить доступ','Check access'],
+'Введите PIN-код':['PIN-кодду киргизиңиз','Введите PIN-код','Enter PIN'],
+'PIN-код администратора':['Администратордун PIN-коду','PIN-код администратора','Administrator PIN'],
 'Войти':['Кирүү','Войти','Sign in'],
 'Студия на связи':['Студия байланышта','Студия на связи','Studio online'],
 'Команда: информация и фото':['Команда: маалымат жана сүрөттөр','Команда: информация и фото','Team: details and photos'],
@@ -636,7 +635,8 @@ $('songForm').addEventListener('submit',addSong);
 $('homeTrackSave').addEventListener('click',saveHomeTrack);
 $('bookingGenresSave').addEventListener('click',saveBookingGenres);
 $('contactForm').addEventListener('submit',saveContactInfo);
-$('pb').onclick=()=>{if(ADM){OK=true;$('pe').textContent='';$('pin').hidden=true;$('apanel').hidden=false;rPh();renderPageContentEditor();renderSongsAdmin();renderPriceEditor()}else{$('pe').textContent=phrase('Администратордун уруксат берилген аккаунту менен кириңиз.','Войдите под аккаунтом администратора с правом редактирования.','Sign in with an administrator account that has editing permission.')}};
+$('pb').onclick=()=>{if(!ADM){$('pe').textContent=phrase('Администратордун уруксат берилген аккаунту менен кириңиз.','Войдите под аккаунтом администратора с правом редактирования.','Sign in with an administrator account that has editing permission.');return}if($('pn').value===ADMIN_PIN){OK=true;$('pe').textContent='';$('pin').hidden=true;$('apanel').hidden=false;rPh();renderPageContentEditor();renderSongsAdmin();renderPriceEditor()}else{$('pe').textContent=phrase('PIN-код туура эмес. Кайра аракет кылыңыз.','Неверный PIN-код. Попробуйте ещё раз.','Incorrect PIN. Try again.');$('pn').value=''}};
+$('pn').addEventListener('keydown',e=>{if(e.key==='Enter')$('pb').click()});
 function route(){let h=location.hash.slice(1);const ip=['team','works','admin','about','book','info','equipment','news','rules','preparation','onlineRules','weddingRecording','phonogramRules'].includes(h);
 document.querySelectorAll('.hm').forEach(e=>e.classList.toggle('off',ip));
 document.querySelectorAll('.pg').forEach(e=>e.classList.toggle('show',e.id===h));

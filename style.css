@@ -154,7 +154,7 @@ pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);borde
 .w.g{background:linear-gradient(90deg,#7fa8f0,#dce8ff,#2563eb,#7fa8f0);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:wd .9s cubic-bezier(.2,.8,.2,1) forwards,sh 5s linear infinite}
 @keyframes wd{to{opacity:1;transform:none}}
 .hp{font-size:19px;max-width:48ch;margin:22px 0 30px;color:var(--mute)}
-.welcome-note{display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;margin:0 0 14px;padding:7px 14px;border:1px solid rgba(127,168,240,.42);border-radius:999px;background:rgba(37,99,235,.12);color:var(--ice);font-size:14px;font-weight:700}
+.welcome-note{display:flex;align-items:center;gap:8px;width:fit-content;max-width:100%;overflow-wrap:anywhere;margin:0 0 14px;padding:7px 14px;border:1px solid rgba(127,168,240,.42);border-radius:999px;background:rgba(37,99,235,.12);color:var(--ice);font-size:14px;font-weight:700}
 .welcome-note::before{content:"✦";color:var(--sky)}
 .music-toggle{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin:0 0 20px;padding:6px 16px 6px 8px;border:1px solid rgba(127,168,240,.58);border-radius:999px;background:linear-gradient(135deg,rgba(37,99,235,.24),rgba(11,20,41,.92));box-shadow:0 8px 22px rgba(37,99,235,.2);color:var(--ice);font:700 14px 'Onest',sans-serif;cursor:pointer;transform:rotate(-1deg);transition:background .2s,border-color .2s,transform .2s}
 .music-toggle::before{content:"♫";display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--blue);color:var(--ice);font-size:16px}
@@ -363,7 +363,11 @@ footer h2{font-size:22px}
 }
 @media(max-width:360px){
   .wrap{padding-right:12px;padding-left:12px}
-  .logo{gap:7px;font-size:16px}
+  .logo{gap:7px;font-size:14px}
+  .hb>.lang-control span{display:none}
+  .hb>.lang-control{margin-right:6px}
+  .hb>.lang-control select{width:82px}
+  .bz{flex:none}
   .hb{height:60px}
   .stage h3{font-size:18px}
   .tr{gap:9px;padding:10px}

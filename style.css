@@ -195,25 +195,12 @@ pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);borde
 @media(max-width:960px){.hero-shortcuts .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:900px){.equipment-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.equipment-grid{grid-template-columns:minmax(0,1fr)}}
-.news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px}
-.news-card{min-width:0;overflow:hidden;padding:0;border:1px solid var(--line);border-radius:18px;background:var(--card)}
-.news-photo{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--bg2)}
-.news-content{padding:20px}
-.news-type{display:inline-flex;align-items:center;margin-bottom:10px;padding:4px 11px;border:1px solid var(--blue2);border-radius:999px;color:var(--sky);font-size:13px;font-weight:700}
-.news-card h3{margin:0 0 8px;font-size:19px;overflow-wrap:anywhere}
-.news-date{display:block;margin:0 0 12px;color:var(--mute);font-size:13px}
-.news-card p,.news-admin-item p{margin:0;color:var(--text);white-space:pre-line;overflow-wrap:anywhere}
-.news-admin-item{padding:18px 0;border-top:1px solid var(--line)}
-.news-admin-item h4{margin:2px 0 8px;color:var(--ice);font-size:17px}
-.news-admin-photo{display:block;width:min(240px,100%);aspect-ratio:16/9;object-fit:cover;margin:0 0 12px;border-radius:12px}
-.news-admin-item .row{margin-top:12px}
-#newsType,#contentPage{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ice);font:16px 'Onest',sans-serif}
+#contentPage{width:100%;min-height:48px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ice);font:16px 'Onest',sans-serif}
 .page-content-admin #contentFields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:4px 16px;margin:12px 0}
 .page-content-admin #contentFields label{margin:10px 0 2px}
 .page-content-admin #contentFields textarea{min-height:54px}
 .song-admin-item{padding:16px 0;border-top:1px solid var(--line)}
 .song-admin-item h4{margin:0 0 8px;color:var(--ice)}
-.news-preview{width:min(320px,100%);height:auto;aspect-ratio:16/9}
 @media(max-width:700px){.hero .hc h1,.hero .hc .hp{max-width:100%;margin-right:auto;margin-left:auto}.hero-shortcuts{margin-top:24px}}
 @media(max-width:480px){.hero-shortcuts .tiles,.equipment-grid{grid-template-columns:minmax(0,1fr)}}
 .card{min-width:0;overflow:hidden}.card b{font-size:15px;overflow-wrap:anywhere}

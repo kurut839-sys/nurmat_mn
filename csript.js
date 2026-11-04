@@ -1295,7 +1295,11 @@ const TEXT = {
 const savedLanguage = localStorage.getItem("sezon-language");
 let LANG = ["ky", "ru", "en"].includes(savedLanguage) ? savedLanguage : "ru";
 const t = (value) => {
-  const row = TEXT[value];
+  const row =
+    TEXT[value] ??
+    (typeof value === "string"
+      ? TEXT[value.replace(/\s+/g, " ").trim()]
+      : undefined);
   return Array.isArray(row)
     ? row[{ ky: 0, ru: 1, en: 2 }[LANG]]
     : row && typeof row === "object"
@@ -1640,9 +1644,9 @@ const PK = [
   {
     id: "pro",
     n: "Профессиональный пакет",
-    min: 100,
-    max: 300,
-    currency: "$",
+    min: 9000,
+    max: 9000,
+    currency: "сом",
     t: "Запись • сведение • подготовка песни",
     d: "Профессиональная подготовка вокала и песни для творческих платформ.",
     l: [
@@ -1672,7 +1676,7 @@ const PK = [
     id: "lite",
     n: "Жөнөкөй пакет",
     min: 2000,
-    max: 3000,
+    max: 2000,
     currency: "сом",
     t: "Үн жаздыруу",
     d: "Жазылган үн кошумча иштетилбейт жана сведение жасалбайт.",
@@ -1687,7 +1691,7 @@ const PK = [
     id: "voice",
     n: "Озвучка",
     min: 2000,
-    max: 3000,
+    max: 2000,
     currency: "сом",
     t: "Диктордук үн, поэзия жана тексттер",
     d: "Тексттерди үн менен жаздыруу жана көркөм окуу.",
@@ -2171,6 +2175,36 @@ function rPk() {
       el("span", "more", "Что входит →"),
     );
     c.onclick = () => info(p.id);
+    b.append(c);
+  });
+  if (!document.getElementById("soonStyle")) {
+    const st = document.createElement("style");
+    st.id = "soonStyle";
+    st.textContent =
+      ".card.soon{cursor:default;opacity:.8;border-style:dashed}.card.soon:hover{transform:none;border-color:var(--line)}";
+    document.head.append(st);
+  }
+  [
+    [
+      phrase("Аранжировка", "Аранжировка", "Arrangement"),
+      phrase(
+        "Бул бөлүм азырынча кошула элек. Ыңгайсыздык үчүн кечирим сурайбыз, жакын арада кошобуз.",
+        "Этот раздел пока не добавлен. Приносим извинения, в ближайшее время добавим.",
+        "This section has not been added yet. We apologize and will add it soon.",
+      ),
+    ],
+    [
+      phrase("Мукаба", "Обложка", "Cover art"),
+      phrase(
+        "Маалымат азырынча кошула элек. Кечирим сурайбыз, жакында кошобуз.",
+        "Информация пока не добавлена. Приносим извинения, скоро добавим.",
+        "Information has not been added yet. We apologize and will add it soon.",
+      ),
+    ],
+  ].forEach(([title, text]) => {
+    const c = el("div", "card soon");
+    c.setAttribute("aria-disabled", "true");
+    c.append(el("b", "", title), el("small", "", text));
     b.append(c);
   });
 }

@@ -362,3 +362,36 @@ footer h2{font-size:22px}
   .tm{min-width:30px}
   .fab{right:10px;padding:0 14px;font-size:14px}
 }
+
+/* FIX: мобильный экран — информационный зал */
+@media (max-width: 600px) {
+  .info-hall .wrap {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .info-hall h2 {
+    max-width: 100%;
+    font-size: clamp(23px, 7vw, 30px);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .info-hall .sub {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .info-card {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .info-card h3,
+  .info-card p {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+

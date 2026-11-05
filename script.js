@@ -1495,7 +1495,8 @@ Object.assign(TEXT, {
     "Запись вокала",
     "Vocal recording"
   ]
-});
+});
+
 const t = (value) => {
   const row =
     TEXT[value] ??
@@ -2367,7 +2368,41 @@ const pe = (a, b, c = "сом") => {
 function rPk() {
   const b = $("pk");
   b.innerHTML = "";
-  PK.forEach((p) => {
+  if (!document.getElementById("soonStyle")) {
+    const st = document.createElement("style");
+    st.id = "soonStyle";
+    st.textContent =
+      ".card.soon{cursor:default;opacity:.8;border-style:dashed}.card.soon:hover{transform:none;border-color:var(--line)}";
+    document.head.append(st);
+  }
+  const soonInfo = [
+    {
+      title: phrase("Аранжировка", "Аранжировка", "Arrangement"),
+      text: phrase(
+        "Бул бөлүм азырынча кошула элек. Ыңгайсыздык үчүн кечирим сурайбыз, жакын арада кошобуз.",
+        "Этот раздел пока не добавлен. Приносим извинения, в ближайшее время добавим.",
+        "This section has not been added yet. We apologize and will add it soon.",
+      ),
+    },
+    {
+      title: phrase("Мукаба", "Обложка", "Cover art"),
+      text: phrase(
+        "Маалымат азырынча кошула элек. Кечирим сурайбыз, жакында кошобуз.",
+        "Информация пока не добавлена. Приносим извинения, скоро добавим.",
+        "Information has not been added yet. We apologize and will add it soon.",
+      ),
+    },
+  ];
+  const isDefault = (p) => /^Новый пакет$/i.test(String(p.n || "").trim());
+  const isSoon = (p) =>
+    p.soon || (!Number(p.min) && !Number(p.max) && isDefault(p));
+  const addSoon = (title, text) => {
+    const c = el("div", "card soon");
+    c.setAttribute("aria-disabled", "true");
+    c.append(el("b", "", title), el("small", "", text));
+    b.append(c);
+  };
+  const addCard = (p) => {
     const c = el("button", "card" + (S.pk === p.id ? " on" : ""));
     c.type = "button";
     c.append(
@@ -2378,37 +2413,35 @@ function rPk() {
     );
     c.onclick = () => info(p.id);
     b.append(c);
-  });
-  if (!document.getElementById("soonStyle")) {
-    const st = document.createElement("style");
-    st.id = "soonStyle";
-    st.textContent =
-      ".card.soon{cursor:default;opacity:.8;border-style:dashed}.card.soon:hover{transform:none;border-color:var(--line)}";
-    document.head.append(st);
+  };
+  const selected = PK.find((p) => p.id === S.pk && !isSoon(p));
+  const cp = $("changePackage");
+  if (cp) {
+    cp.hidden = !selected;
+    cp.onclick = () => {
+      S.pk = null;
+      S.sub = null;
+      rPk();
+      rSub();
+      upd();
+    };
   }
-  [
-    [
-      phrase("Аранжировка", "Аранжировка", "Arrangement"),
-      phrase(
-        "Бул бөлүм азырынча кошула элек. Ыңгайсыздык үчүн кечирим сурайбыз, жакын арада кошобуз.",
-        "Этот раздел пока не добавлен. Приносим извинения, в ближайшее время добавим.",
-        "This section has not been added yet. We apologize and will add it soon.",
-      ),
-    ],
-    [
-      phrase("Мукаба", "Обложка", "Cover art"),
-      phrase(
-        "Маалымат азырынча кошула элек. Кечирим сурайбыз, жакында кошобуз.",
-        "Информация пока не добавлена. Приносим извинения, скоро добавим.",
-        "Information has not been added yet. We apologize and will add it soon.",
-      ),
-    ],
-  ].forEach(([title, text]) => {
-    const c = el("div", "card soon");
-    c.setAttribute("aria-disabled", "true");
-    c.append(el("b", "", title), el("small", "", text));
-    b.append(c);
+  if (selected) {
+    addCard(selected);
+    return;
+  }
+  let k = 0;
+  PK.forEach((p) => {
+    if (!isSoon(p)) return addCard(p);
+    const info_ = soonInfo[k++];
+    if (p.soon && !isDefault(p)) addSoon(p.n, p.t || p.d || (info_ ? info_.text : ""));
+    else if (info_) addSoon(info_.title, info_.text);
+    else addSoon(p.n, p.t || p.d || "");
   });
+  while (k < soonInfo.length) {
+    addSoon(soonInfo[k].title, soonInfo[k].text);
+    k++;
+  }
 }
 function info(id) {
   const p = PK.find((x) => x.id === id);

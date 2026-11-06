@@ -2130,17 +2130,17 @@ const DEFAULT_CONTACT_INFO = {
   ky: {
     address: "Бишкек ш., Киев көчөсү 77, «Илбирс» имараты, 3-кабат, 12-кабинет",
     landmark: "Ала-Тоо аянты",
-    hours: "Күн сайын, 10:00–22:00",
+        hours: "Күн сайын, 10:00–19:00",
   },
   ru: {
     address: "г. Бишкек, ул. Киевская 77, здание «Илбирс», 3 этаж, кабинет 12",
     landmark: "площадь Ала-Тоо",
-    hours: "Ежедневно, 10:00–22:00",
+    hours: "Ежедневно, 10:00–19:00",
   },
   en: {
     address: "Bishkek, 77 Kievskaya St., Ilbirs building, 3rd floor, office 12",
     landmark: "Ala-Too Square",
-    hours: "Daily, 10:00–22:00",
+     hours: "Daily, 10:00–19:00",
   },
   phone: "+996 509 202620",
   mapUrl:

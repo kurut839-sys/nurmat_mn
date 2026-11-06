@@ -947,7 +947,13 @@
                 <div class="slots" id="slots"></div>
                 <div id="cw" hidden>
                   <label for="ct">Своё время</label
-                  ><input id="ct" type="time" style="max-width: 220px" />
+                  ><input
+  id="ct"
+  type="time"
+  min="10:00"
+  max="19:00"
+  style="max-width: 220px"
+/>
                 </div>
               </div>
               <div class="pane" data-s="4" hidden>
@@ -1413,7 +1419,7 @@
               </div>
               <div>
                 <dt>Часы работы</dt>
-                <dd id="contactHours">Ежедневно, 10:00–22:00</dd>
+                <dd id="contactHours">Ежедневно, 10:00–19:00</dd>
               </div>
               <div>
                 <dt>Телефон</dt>

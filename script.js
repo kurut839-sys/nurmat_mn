@@ -2600,7 +2600,7 @@ function rSlots() {
     (LANG === "ky" ? "Убакыт: " : LANG === "ru" ? "Время на " : "Time on ") +
     S.date.toLocaleDateString(locale(), { day: "numeric", month: "long" });
   const td = S.date.toDateString() === now.toDateString();
-  for (let h = 10; h <= 21; h++) {
+for (let h = 10; h <= 19; h++) {
     const t = h + ":00",
       s = el("button", "slot" + (S.time === t ? " on" : ""), t);
     s.type = "button";
